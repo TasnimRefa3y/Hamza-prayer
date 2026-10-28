@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#06152d">
+<title>Hamza's Prayer League</title>
+<style>
+:root{--navy:#06152d;--panel:#0c2345;--green:#16e58a;--gold:#ffd23f;--muted:#9eb5d4;--white:#f6f9ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#12396b 0,#06152d 54%,#020914 100%);color:var(--white);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh}
+.wrap{max-width:560px;margin:auto;padding:16px 14px 34px}.hero{position:relative;overflow:hidden;border:1px solid #2b5b8c;border-radius:25px;padding:22px 18px;background:linear-gradient(145deg,rgba(13,49,91,.97),rgba(3,14,32,.97));box-shadow:0 12px 35px #0007}
+.hero:after{content:"⚽";position:absolute;left:-8px;bottom:-30px;font-size:120px;opacity:.12;transform:rotate(-18deg)}
+.eyebrow{color:var(--green);font-size:.78rem;font-weight:900;letter-spacing:2px}.hero h1{font-size:clamp(2rem,8vw,3rem);line-height:1.02;margin:8px 0;color:#fff;font-weight:1000;font-style:italic}.hero h1 span{display:block;color:var(--gold)}.sub{margin:10px 0 16px;color:#d8e7ff}.stats{display:flex;gap:8px;flex-wrap:wrap}.pill{background:#07172f;border:1px solid #28517b;border-radius:12px;padding:8px 10px;font-size:.85rem;font-weight:800}.pill b{color:var(--gold)}
+button{font:inherit;cursor:pointer}.primary{border:0;border-radius:15px;background:linear-gradient(90deg,#ffe36a,#ffbd16);color:#17213a;font-weight:1000;padding:14px 18px;width:100%;margin-top:16px;box-shadow:0 5px 0 #b57a00}
+.section{margin-top:16px;background:rgba(8,27,54,.94);border:1px solid #234b78;border-radius:21px;padding:16px;box-shadow:0 8px 25px #0003}.section h2{font-size:1.15rem;margin:0 0 10px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.day-label{font-weight:900;color:var(--gold)}.muted{color:var(--muted);font-size:.9rem}.score{font-size:1.35rem;font-weight:1000;color:var(--green)}.progress{height:10px;background:#172e4c;border-radius:99px;overflow:hidden;margin:12px 0 5px}.progress div{height:100%;width:0;background:linear-gradient(90deg,#05c878,#d2ff61);border-radius:99px;transition:width .3s}
+.prayers{display:grid;gap:9px;margin-top:13px}.prayer{display:flex;align-items:center;gap:11px;background:#f3f7ff;color:#132542;border:2px solid transparent;border-radius:14px;padding:12px;text-align:right;min-height:57px}.prayer .emoji{font-size:1.4rem}.prayer .name{font-weight:900;flex:1}.prayer .state{font-size:.78rem;color:#62718b}.prayer .check{width:25px;height:25px;border:2px solid #9caec5;border-radius:50%;display:grid;place-items:center;font-weight:1000}.prayer.done{background:#d9ffec;border-color:#18c77c}.prayer.done .check{background:#12bd72;color:white;border-color:#12bd72}.prayer.done .state{color:#087747}
+.message{margin-top:13px;border-radius:13px;padding:12px;background:#102e50;color:#dfffea;text-align:center;font-weight:800;line-height:1.7}.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-top:12px}.day{border:1px solid #355477;background:#0a1b35;color:#dbe8ff;border-radius:12px;padding:9px 2px;font-weight:900;min-height:53px}.day small{display:block;font-size:.68rem;color:#9eb5d4;margin-top:3px}.day.active{border:2px solid var(--gold);color:var(--gold)}.day.complete{background:#075637;border-color:#18d783;color:#caffdf}.day.locked{opacity:.5}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.badge{background:#0a1b35;border:1px solid #2b4a70;border-radius:12px;padding:10px 4px;text-align:center;font-size:.73rem}.badge span{display:block;font-size:1.45rem;margin-bottom:4px}.badge strong{display:block}.note{font-size:.83rem;line-height:1.8;color:#c5d7ef}.final{display:none;text-align:center;background:linear-gradient(145deg,#5c3b00,#0c2345 68%);border:1px solid #d6a927}.final h2{font-size:1.8rem;color:var(--gold)}.reset{background:transparent;color:#9eb5d4;border:1px solid #345477;border-radius:10px;padding:8px 12px;font-size:.8rem;margin-top:10px}
+footer{text-align:center;color:#7892b4;font-size:.72rem;margin:18px 0 4px}
+@media(min-width:450px){.prayers{grid-template-columns:1fr 1fr}.prayer:last-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">THE ULTIMATE 14-DAY CHALLENGE</div>
+    <h1>HAMZA'S <span>PRAYER LEAGUE</span></h1>
+    <p class="sub">دوري حمزة للمحافظة على الصلاة ⚽<br>14 يوم • 70 صلاة • بطل واحد</p>
+    <div class="stats"><div class="pill">⚽ الهدف: <b>70 صلاة</b></div><div class="pill">🏆 المدة: <b>14 يوم</b></div><div class="pill">⭐ كل صلاة = نقطة</div></div>
+    <button class="primary" id="startBtn">⚽ ابدأ التحدي — KICK OFF!</button>
+  </header>
+
+  <section class="section" id="today">
+    <div class="row"><div><div class="day-label" id="dayTitle">MATCH DAY • اليوم 1 من 14</div><div class="muted" id="daySubtitle">كل صلاة خطوة ناحية البطولة</div></div><div class="score" id="dayScore">0 / 5</div></div>
+    <div class="progress"><div id="dayBar"></div></div>
+    <div class="prayers" id="prayers"></div>
+    <div class="message" id="encouragement">جاهز يا حمزة؟ الملعب ملعبك! 💪⚽</div>
+  </section>
+
+  <section class="section">
+    <div class="row"><h2>🏟️ جدول الموسم | SEASON</h2><span class="muted" id="totalText">0 / 70</span></div>
+    <div class="progress"><div id="totalBar"></div></div>
+    <div class="row"><span class="muted">الأيام المكتملة</span><strong id="daysComplete">0 / 14</strong></div>
+    <div class="row" style="margin-top:8px"><span class="muted">أيام الـ Perfect Match</span><strong id="perfectDays">0</strong></div>
+    <div class="row" style="margin-top:8px"><span class="muted">مستواك الحالي</span><strong id="level">🥉 Rookie</strong></div>
+    <div class="badges">
+      <div class="badge"><span>🥉</span><strong>ROOKIE</strong><small>1–3 أيام</small></div>
+      <div class="badge"><span>🥈</span><strong>STARTER</strong><small>4–7 أيام</small></div>
+      <div class="badge"><span>🥇</span><strong>PRO</strong><small>8–10 أيام</small></div>
+      <div class="badge"><span>👑</span><strong>CHAMPION</strong><small>11–14 يوم</small></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>📅 اختر يوم المباراة</h2>
+    <p class="muted">اضغط على أي يوم لمراجعة صلواته وتسجيلها.</p>
+    <div class="days" id="days"></div>
+  </section>
+
+  <section class="section final" id="final">
+    <div style="font-size:3rem">🏆⚽🎉</div>
+    <h2>YOU ARE THE CHAMPION, HAMZA!</h2>
+    <p>وصلت لنهاية التحدي! كل صلاة حافظت عليها خطوة جميلة في علاقتك بربنا.</p>
+    <div class="score" id="finalScore">0 / 70</div>
+    <p>افتح مكافأتك الكبيرة مع عيلتك واحتفل بإنجازك! 🎁</p>
+  </section>
+
+  <section class="section">
+    <h2>💚 تذكير البطل</h2>
+    <p class="note">يا حمزة، المكافأة حافز جميل، لكن الصلاة أهم من النقاط. لو يوم كان صعب أو فاتتك صلاة، ما تستسلمش؛ ارجع كمّل من الصلاة اللي بعدها. كل خطوة مهمة، وربنا يحب إننا نرجع له ونحاول.</p>
+  </section>
+  <div style="text-align:center"><button class="reset" id="resetBtn">إعادة ضبط التحدي</button></div>
+  <footer>Created by Tasnim Refaey © 2026 — All Rights Reserved</footer>
+</main>
+<script>
+const prayers=[["🌅","الفجر"],["☀️","الظهر"],["🌤️","العصر"],["🌇","المغرب"],["🌙","العشاء"]];
+const key="hamzaPrayerLeague2026";
+let state={marks:Array.from({length:14},()=>[false,false,false,false,false]),day:0};
+try{const saved=JSON.parse(localStorage.getItem(key));if(saved&&saved.marks?.length===14)state=saved}catch(e){}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
+function countDay(i){return state.marks[i].filter(Boolean).length}
+function allPrayers(){return state.marks.flat().filter(Boolean).length}
+function completeDays(){return state.marks.filter(d=>d.every(Boolean)).length}
+function level(){let n=completeDays();return n>=11?"👑 Champion":n>=8?"🥇 Pro":n>=4?"🥈 Starter":"🥉 Rookie"}
+function msg(n){if(n===5)return"🔥 PERFECT MATCH! خمس صلوات اتسجلوا — عاش يا حمزة!";if(n>=3)return"💪 أداء قوي! كمّل يا بطل، فاضل شوية.";if(n>0)return"⚽ بداية حلوة! كل صلاة بتفرق.";return"جاهز يا حمزة؟ الملعب ملعبك! 💪⚽"}
+function render(){
+ const i=state.day,n=countDay(i),total=allPrayers(),done=completeDays();
+ $("dayTitle").textContent=`MATCH DAY • اليوم ${i+1} من 14`;
+ $("daySubtitle").textContent=n===5?"🏆 يوم كامل! أحسنت يا بطل":"كل صلاة خطوة ناحية البطولة";
+ $("dayScore").textContent=`${n} / 5`; $("dayBar").style.width=(n*20)+"%";
+ $("prayers").innerHTML="";
+ prayers.forEach((p,j)=>{const b=document.createElement("button");b.className="prayer"+(state.marks[i][j]?" done":"");b.setAttribute("aria-pressed",state.marks[i][j]);b.innerHTML=`<span class="emoji">${p[0]}</span><span class="name">${p[1]}</span><span class="state">${state.marks[i][j]?"تم التسجيل ✓":"لم تُسجّل"}</span><span class="check">${state.marks[i][j]?"✓":""}</span>`;b.onclick=()=>{state.marks[i][j]=!state.marks[i][j];save();render()};$("prayers").appendChild(b)});
+ $("encouragement").textContent=msg(n);$("totalText").textContent=`${total} / 70`;$("totalBar").style.width=(total/70*100)+"%";
+ $("daysComplete").textContent=`${done} / 14`;$("perfectDays").textContent=done;$("level").textContent=level();
+ $("days").innerHTML="";
+ for(let d=0;d<14;d++){const b=document.createElement("button");let c=countDay(d);b.className="day"+(d===state.day?" active":"")+(c===5?" complete":"");b.innerHTML=`${d+1}<small>${c===5?"🏆":c+"/5"}</small>`;b.onclick=()=>{state.day=d;save();render();$("today").scrollIntoView({behavior:"smooth",block:"start"})};$("days").appendChild(b)}
+ $("final").style.display=done===14?"block":"none";$("finalScore").textContent=`${total} / 70`;
+}
+$("startBtn").onclick=()=>{$("today").scrollIntoView({behavior:"smooth",block:"start"});$("encouragement").textContent="🚀 Kick off! اختار الصلاة بعد ما تصليها وسجّل إنجازك."};
+$("resetBtn").onclick=()=>{if(confirm("متأكد إنك عايز تبدأ من الأول؟ هتتمسح كل العلامات المحفوظة على الجهاز.")){state={marks:Array.from({length:14},()=>[false,false,false,false,false]),day:0};save();render();window.scrollTo({top:0,behavior:"smooth"})}};
+render();
+</script>
+</body>
+</html>
